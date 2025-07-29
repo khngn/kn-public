@@ -48,8 +48,8 @@ services:
           memory: 1Gb
 volumes:
   qm1data:
-    driver_opts:
-      gid: 0
+    # driver_opts:
+    #   gid: 0
     labels:
       - com.ibm.mq=qm1
 networks:

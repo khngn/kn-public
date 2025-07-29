@@ -185,7 +185,7 @@ and logs to persist across container outages.
 Initialise the external storage by running
 
 ````
-docker compose -f mq-init-compose.yaml up
+docker compose --file mq-init-compose.yaml up
 ````
 
 The container will start, initialise the storage, and then stop.
@@ -201,7 +201,7 @@ If you prefer to use secrets then use the `docker-compose.secrets.yaml` file. Th
 Start the queue manager by running
 
 ````
-docker compose -f docker-compose.yaml up
+docker compose --file docker-compose.yaml up
 ````
 
 If you see the start fails with the following error:

@@ -35,6 +35,6 @@ services:
           memory: 1Gb
 volumes:
   qm1data:
-    driver_opts:
-      uid: 0
-      gid: 0
+    # driver_opts:
+    #   uid: 0
+    #   gid: 0
