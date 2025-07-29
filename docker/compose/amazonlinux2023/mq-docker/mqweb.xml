@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+	<!--
+
+		Licensed Materials - Property of IBM
+
+		5724-H72
+
+		Copyright IBM Corp. 2016, 2024 All Rights Reserved.
+
+		US Government Users Restricted Rights - Use, duplication or
+		disclosure restricted by GSA ADP Schedule Contract with
+		IBM Corp.
+	-->
+	<!--
+		Configuration for the mqweb server. The contents of this file is liable to change. 
+		Please do not add user configuration to this file. User configuration should be added 
+		to the mqwebuser.xml file that is associated with a specific MQ installation.
+	-->
+
+    <featureManager>
+        <feature>jaxrs-2.1</feature>
+        <feature>ssl-1.0</feature>
+        <feature>jndi-1.0</feature>
+        <feature>concurrent-1.0</feature>
+        <feature>websocket-1.0</feature>
+        <feature>applicationMonitorMQ-1.0</feature>
+        <feature>apiDiscovery-1.0</feature>
+    </featureManager>
+
+    <!-- 
+    Configurable properties. These can be overridden by setting appropriate values in mqwebuser.xml. 
+    -->
+    <variable name="httpHost" value="localhost"/>
+    <variable name="httpPort" value="-1"/>                   
+    <variable name="httpsPort" value="9443"/>
+    <variable name="mqRestRequestTimeout" value="30"/>
+    <variable name="mqConsoleAutostart" value="true"/>
+    <variable name="mqRestAutostart" value="true"/>
+    <variable name="mqRestGatewayQmgr" value=""/>
+    <variable name="mqRestGatewayEnabled" value="true"/>
+    <variable name="traceSpec" value="*=info"/>
+    <variable name="maxTraceFileSize" value="20"/>
+    <variable name="maxTraceFiles" value="2"/>
+    <variable name="maxMsgTraceFileSize" value="200"/>
+    <variable name="maxMsgTraceFiles" value="5"/>
+    <variable name="ltpaExpiration" value="120"/>
+    <variable name="ltpaCookieName" value="LtpaToken2_${env.MQWEB_LTPA_SUFFIX}"/>
+    <variable name="secureLtpa" value="true"/>
+    <variable name="mqRestCsrfValidation" value="true"/>
+    <variable name="mqRestCorsAllowedOrigins" value=""/>
+    <variable name="mqRestCorsMaxAgeInSeconds" value="0"/>
+    <variable name="mqRestMftCoordinationQmgr" value=""/>
+    <variable name="mqRestMftCommandQmgr" value=""/>    
+    <variable name="mqRestMftEnabled" value="false"/>
+    <variable name="mqRestMftReconnectTimeoutInMinutes" value="30"/>
+    <variable name="mqRestMessagingEnabled" value="true"/>
+    <variable name="mqRestMessagingMaxPoolSize" value="20"/>
+    <variable name="mqRestMessagingFullPoolBehavior" value="overflow"/>
+    <variable name="mqRestMessagingAdoptWebUserContext" value="true"/>
+    <variable name="mqRestMessagingConnectionMode" value="local"/>
+    <variable name="managementMode" value="standard"/>
+    <variable name="mqConsoleFrameAncestors" value="'none'"/>
+    <variable name="mqConsoleEnableSystemTopicMonitoring" value="true"/>
+    <variable name="mqConsoleEnableDashboardBrowse" value="true"/>
+    <variable name="mqConsoleRemoteSupportEnabled" value="true"/>
+    <variable name="mqConsoleRemoteUIAdmin" value="false"/>
+    <variable name="mqConsoleRemoteAllowLocal" value="true"/>
+    <variable name="mqConsoleRemotePollTime" value="300"/>
+    <variable name="mqConsoleMaxMsgsPerRequest" value="1000"/>
+    <variable name="mqConsoleMaxMsgCharsToDisplay" value="1024"/>
+    <variable name="mqConsoleMaxMsgRequestSize" value="1"/>
+    <variable name="remoteKeyfile" value="" />
+    
+    <jndiEntry jndiName="serverOutputDir" value="${server.output.dir}"/>
+    <jndiEntry jndiName="serverConfigDir" value="${server.config.dir}"/>
+    <jndiEntry jndiName="secureLtpa" value="${secureLtpa}"/>
+    <jndiEntry jndiName="mqRestGatewayQmgr" value="${mqRestGatewayQmgr}"/>
+    <jndiEntry jndiName="mqRestGatewayEnabled" value="${mqRestGatewayEnabled}"/>
+    <jndiEntry jndiName="logDirectory" value="${com.ibm.ws.logging.log.directory}"/>
+    <jndiEntry jndiName="ltpaExpiration" value="${ltpaExpiration}"/>
+    <jndiEntry jndiName="ltpaCookieName" value="${ltpaCookieName}"/>
+    <jndiEntry jndiName="maxMsgTraceFileSize" value="${maxMsgTraceFileSize}"/>
+    <jndiEntry jndiName="maxMsgTraceFiles" value="${maxMsgTraceFiles}"/>
+    <jndiEntry jndiName="mqRestRequestTimeout" value="${mqRestRequestTimeout}"/>    
+    <jndiEntry jndiName="mqRestCsrfValidation" value="${mqRestCsrfValidation}"/>
+    <jndiEntry jndiName="mqRestMftCoordinationQmgr" value="${mqRestMftCoordinationQmgr}"/>
+    <jndiEntry jndiName="mqRestMftCommandQmgr" value="${mqRestMftCommandQmgr}"/>
+    <jndiEntry jndiName="mqRestMftEnabled" value="${mqRestMftEnabled}"/>
+    <jndiEntry jndiName="mqRestMftReconnectTimeoutInMinutes" value="${mqRestMftReconnectTimeoutInMinutes}"/>
+    <jndiEntry jndiName="mqRestMessagingEnabled" value="${mqRestMessagingEnabled}"/>    
+    <jndiEntry jndiName="mqRestMessagingMaxPoolSize" value="${mqRestMessagingMaxPoolSize}"/>
+    <jndiEntry jndiName="mqRestMessagingFullPoolBehavior" value="${mqRestMessagingFullPoolBehavior}"/>
+    <jndiEntry jndiName="mqRestMessagingAdoptWebUserContext" value="${mqRestMessagingAdoptWebUserContext}"/>
+    <jndiEntry jndiName="mqRestMessagingConnectionMode" value="${mqRestMessagingConnectionMode}"/>
+    <jndiEntry jndiName="managementMode" value="${managementMode}"/>
+    <jndiEntry jndiName="mqConsoleFrameAncestors" value="${mqConsoleFrameAncestors}"/>
+    <jndiEntry jndiName="mqConsoleEnableSystemTopicMonitoring" value="${mqConsoleEnableSystemTopicMonitoring}"/>
+    <jndiEntry jndiName="mqConsoleEnableDashboardBrowse" value="${mqConsoleEnableDashboardBrowse}"/>
+    <jndiEntry jndiName="mqConsoleRemoteSupportEnabled" value="${mqConsoleRemoteSupportEnabled}"/>
+    <jndiEntry jndiName="mqConsoleRemoteUIAdmin" value="${mqConsoleRemoteUIAdmin}"/>
+    <jndiEntry jndiName="mqConsoleRemoteAllowLocal" value="${mqConsoleRemoteAllowLocal}"/>
+    <jndiEntry jndiName="mqConsoleRemotePollTime" value="${mqConsoleRemotePollTime}"/>
+    <jndiEntry jndiName="mqConsoleMaxMsgsPerRequest" value="${mqConsoleMaxMsgsPerRequest}"/>
+    <jndiEntry jndiName="mqConsoleMaxMsgCharsToDisplay" value="${mqConsoleMaxMsgCharsToDisplay}"/>
+    <jndiEntry jndiName="mqConsoleMaxMsgRequestSize" value="${mqConsoleMaxMsgRequestSize}"/>    
+    <jndiEntry jndiName="remoteKeyfile" value="${remoteKeyfile}"/>
+    
+    <!-- 
+    The following JNDI property implies the mqweb server package type. It does not have a corresponding 
+    <variable></variable> entry and is therefore not included in the property allow-list used by the 
+    setmqweb/dspmqweb commands. Some API's (such as the administration API) can be revoked depending upon
+    the mqweb server package type.  
+    -->
+    <jndiEntry jndiName="mqStandaloneWebServer" value="false"/>
+    
+    <httpDispatcher enableWelcomePage="false" appOrContextRootMissingMessage='&lt;script&gt;document.title="";document.getElementsByTagName("h1")[0].innerHTML="";document.location.href=document.location.href.indexOf("ibmmq/console") &gt;= 0?"/ibmmq/console/login.html":"ibmmq/console/login.html";&lt;/script&gt;' />
+
+    <httpEndpoint id="defaultHttpEndpoint" host="${httpHost}" httpPort="${httpPort}" httpsPort="${httpsPort}">
+        <httpOptions removeServerHeader="true"/>
+        <compression>
+          <types>+application/*</types>
+          <types>-text/plain</types>
+        </compression>
+        <headers>
+            <setIfMissing>Cross-Origin-Resource-Policy:same-origin</setIfMissing>
+        </headers>
+    </httpEndpoint>
+
+    <!-- 
+    Failover to FORM security if no X509 certificate. 
+    -->
+    <webAppSecurity allowAuthenticationFailOverToAuthMethod="FORM" loginFormURL="/ibmmq/console/login.html" ssoRequiresSSL="${secureLtpa}" ssoCookieName="${ltpaCookieName}" sameSiteCookie="Strict" />
+
+    <!-- 
+    Basic TLS configuration. Should be overridden by updating mqwebuser.xml. 
+    -->
+    <keyStore id="defaultKeyStore" location="key.jks" type="JKS" password="password"/>
+    <ssl id="mqDefaultSSLConfig" clientAuthenticationSupported="true" keyStoreRef="defaultKeyStore" serverKeyAlias="default" sslProtocol="TLSv1.2"/>
+
+    <logging maxFileSize="${maxTraceFileSize}" maxFiles="${maxTraceFiles}" traceFormat="BASIC" traceSpecification="${traceSpec}"/>
+
+    <!-- 
+    Prevent polling for application updates. 
+    -->
+    <applicationMonitor dropinsEnabled="false" updateTrigger="mbean"/>
+    
+    <config monitorInterval="500ms" updateTrigger="polled"/>
+
+    <ltpa expiration="${ltpaExpiration}"/>
+    
+    <managedExecutorService jndiName="concurrent/execSvc1">
+        <contextService>
+            <classloaderContext/>
+            <securityContext/>
+        </contextService>
+    </managedExecutorService>
+
+    <!-- 
+    Pick up MQ jars from co-located MQ install. 
+    -->
+    <library description="Libraries for use by applications" apiTypeVisibility="spec, ibm-api, third-party" id="mqrest.libs">
+        <fileset dir="${wlp.install.dir}/../java/lib" includes="com.ibm.mq.allclient.jar, com.ibm.mq.commonservices.jar, jms.jar,
+                                                                bcpkix-jdk18on.jar, bcprov-jdk18on.jar, bcutil-jdk18on.jar"/>
+        <fileset dir="${wlp.install.dir}/mq/libs" includes="com.ibm.mq.restapi.common.jar, org.json.jar, com.ibm.wmqfte.cmdline.jar, 
+                                                            com.ibm.wmqfte.common.jar, com.ibm.wmqfte.exitroutines.api.jar"/>
+    </library>
+
+    <enterpriseApplication id="com.ibm.mq.console" location="${wlp.install.dir}/mq/apps/com.ibm.mq.webconsole.ear" name="com.ibm.mq.console" autostart="${mqConsoleAutostart}">
+        <classloader apiTypeVisibility="spec, ibm-api, third-party" commonLibraryRef="mqrest.libs"/>
+    </enterpriseApplication>
+
+    <enterpriseApplication id="com.ibm.mq.rest" location="${wlp.install.dir}/mq/apps/com.ibm.mq.rest.ear" name="com.ibm.mq.rest" autostart="${mqRestAutostart}">
+        <classloader apiTypeVisibility="spec, ibm-api, third-party" commonLibraryRef="mqrest.libs"/>
+    </enterpriseApplication>
+    
+    <cors id="com.ibm.mq.rest.cors"
+          domain="/ibmmq/rest"
+          allowedOrigins="${mqRestCorsAllowedOrigins}"
+          allowedMethods="GET, POST, PATCH, PUT, DELETE"
+          allowedHeaders="Accept-Charset, Accept-Language, Authorization, Content-Type, ibm-mq-rest-csrf-token, ibm-mq-md-correlationId, ibm-mq-md-expiry, ibm-mq-md-persistence, ibm-mq-md-priority, ibm-mq-md-replyTo, ibm-mq-usr, ibm-mq-rest-mft-total-transfers, ibm-mq-rest-gateway-qmgr"
+          exposeHeaders="Content-Language, Content-Length, Content-Type, Location, ibm-mq-qmgrs, ibm-mq-md-messageId, ibm-mq-md-correlationId, ibm-mq-md-expiry, ibm-mq-md-persistence, ibm-mq-md-priority, ibm-mq-md-replyTo, ibm-mq-resolved-qmgr, ibm-mq-usr, ibm-mq-rest-mft-total-transfers, ibm-mq-rest-gateway-qmgr"
+          allowCredentials="true"
+          maxAge="${mqRestCorsMaxAgeInSeconds}"/> 
+          
+	<webContainer enablePostOnlyJSecurityCheck="true" disableXPoweredBy="true"/>  
+</server>
+

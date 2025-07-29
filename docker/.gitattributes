@@ -1,0 +1,16 @@
+# **********************************************************************
+#
+# NAME
+# infrastructure-test/cloudsimulation/localstack/init/.gitattributes
+#
+# PURPOSE
+# This file is used by the GIT (https://git-scm.com) source control
+# tool.
+#
+# SEE
+# https://git-scm.com/docs/gitattributes
+#
+# **********************************************************************
+# eol: This attribute marks a path to use a specific line-ending style in the 
+# working tree when it is checked out.
+**/*.sh text eol=lf

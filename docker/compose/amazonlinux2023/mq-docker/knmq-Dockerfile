@@ -1,0 +1,28 @@
+FROM icr.io/ibm-messaging/mq:latest
+
+# Set environment variables
+ENV LICENSE=accept
+ENV MQ_QMGR_NAME=QM1
+
+# TODO: Environment variable MQ_APP_PASSWORD is deprecated, use secrets to set the passwords
+# https://github.com/ibm-messaging/mq-container/blob/master/docs/developer-config.md#environment-variables
+# Specify the password of the app user. If set, this will cause the DEV.APP.SVRCONN channel to become secured
+# and only allow connections that supply a valid userid and password. Must be at least 8 characters long.
+ENV MQ_APP_PASSWORD=appPassword
+# Specify the password of the admin user. Must be at least 8 characters long.
+ENV MQ_ADMIN_PASSWORD=adminPassword
+
+# https://developer.ibm.com/tutorials/mq-develop-mq-rest-api/
+# The mqweb server provides an option for switching on the API Discovery feature.
+# Explore at: https://localhost:9443/ibm/api/explorer
+# Copy the edited mqweb.xml back to its original directory to enable to feature:
+COPY mqweb.xml /opt/mqm/web/mq/etc/
+
+# Expose the required ports
+EXPOSE 9443 1414
+
+# Create a volume for persistent data
+VOLUME ["/mnt/mqm"]
+
+# Add labels for identification
+LABEL com.ibm.mq=qm1

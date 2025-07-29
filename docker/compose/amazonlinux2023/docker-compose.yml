@@ -1,0 +1,70 @@
+# **********************************************************************
+#
+# **********************************************************************
+services:
+
+  amazonlinux2023:
+    image: amazonlinux:2023
+    container_name: amazonlinux2023
+    privileged: true
+    # stdin_open: true
+    # tty: true
+
+    ports:
+      - '443:443'
+      - '8080:8080'
+
+    environment:
+      # If your Fiddler / CNTLM proxy uses a different port than the default 8888
+      # set your env variable 'HTTP_PROXY_PORT' accordingly.
+      - http_proxy=host.docker.internal:${HTTP_PROXY_PORT:-8888}
+      - https_proxy=host.docker.internal:${HTTP_PROXY_PORT:-8888}
+      - HTTP_PROXY=host.docker.internal:${HTTP_PROXY_PORT:-8888}
+      - HTTPS_PROXY=host.docker.internal:${HTTP_PROXY_PORT:-8888}
+      # # OUTBOUND_HTTP_PROXY: HTTP Proxy used for downloads of runtime dependencies and connections outside LocalStack itself
+      # - OUTBOUND_HTTP_PROXY=host.docker.internal:${HTTP_PROXY_PORT:-8888}
+      # # OUTBOUND_HTTPS_PROXY: HTTPS Proxy used for downloads of runtime dependencies and connections outside LocalStack itself
+      # - OUTBOUND_HTTPS_PROXY=host.docker.internal:${HTTP_PROXY_PORT:-8888}
+
+      # ######################################################################################################
+      # https://docs.localstack.cloud/references/custom-tls-certificates/#custom-tls-certificates-with-init-hooks
+      # ######################################################################################################
+      - CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+      - REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+      - NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
+      
+      # ######################################################################################################
+      # Others:
+      # ######################################################################################################
+      - TZ=Australia/Canberra
+
+    volumes:
+      - './init/:/etc/mira/init/'
+      - './mq-docker/:/etc/mira/mq-docker/'
+    command: |
+      /bin/bash -c "
+        /etc/mira/init/apply-certificates.sh;
+        env | grep -i HTTP
+        dnf update -y;
+        dnf install -y docker git;
+        docker --version;
+        git --version;
+        # systemctl enable docker;
+        # systemctl start docker;
+        cd /etc/mira/mq-docker/ && ./run.sh;
+        tail -f /dev/null;
+      "
+
+#     networks:
+#       - lambda
+
+# networks:
+#   lambda:
+#     name: lambda
+
+# volumes:
+#   postgres:
+#   redis_data:
+#     driver: local
+
+# **********************************************************************
